@@ -7,15 +7,31 @@
 
   <!-- Load Lit Navbar Component -->
   <script type="module" src="js/forkyeah-navbar.js"></script>
+  <script type="module" src="js/forkyeah-searchbar.js"></script>
 </head>
 <body>
 
   <!-- ForkYeah Navbar Component -->
   <forkyeah-navbar></forkyeah-navbar>
+  <forkyeah-searchbar></forkyeah-searchbar>
+
+  <script>
+  const searchbar = document.querySelector('forkyeah-searchbar');
+
+  // Listen to live input changes
+  searchbar.addEventListener('search-changed', e => {
+    console.log('Query changed:', e.detail.query);
+  });
+
+  // Listen to form submit
+  searchbar.addEventListener('search-submit', e => {
+    console.log('Search submitted:', e.detail.query);
+    // You can trigger search logic here
+  });
+</script>
 
   <main>
     <h1>Welcome to ForkYeah 🍴</h1>
-    <p>Explore unique restaurants and cuisines!</p>
   </main>
 
 </body>

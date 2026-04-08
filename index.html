@@ -13,20 +13,27 @@
 
     <title>My Project</title>
     
-    <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
 
 
-  <!-- Load Lit Navbar Component -->
+
+
+
+
+    <!-- THIS IS WHERE YOU CALL THE COMPONENTS -->
   <script type="module" src="js/forkyeah-navbar.js"></script>
   <script type="module" src="js/forkyeah-searchbar.js"></script>
+  <script type="module" src="js/forkyeah-infocard.js"></script>
 </head>
 <body>
 
-  <!-- ForkYeah Navbar Component -->
+  <!-- THEN THIS IS PLACEMENT FOR THE COMPONENTS -->
   <forkyeah-navbar></forkyeah-navbar>
   <forkyeah-searchbar></forkyeah-searchbar>
+  <forkyeah-infocard></forkyeah-infocard>
 
+
+  <!-- Searchbar javascript logic -->
   <script>
   const searchbar = document.querySelector('forkyeah-searchbar');
 
@@ -42,8 +49,11 @@
   });
 </script>
 
+
+
+
+
   <main>
-    <h1>Welcome to ForkYeah 🍴</h1>
   </main>
 
 </body>

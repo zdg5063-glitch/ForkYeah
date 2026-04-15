@@ -14,7 +14,7 @@
   --red:  #E8192C;
   --gray: #C8C8C8;
   --font: 'Barlow Condensed', sans-serif;
-  --card-width: 640px;
+  --card-width: 760px;
 }
 
 html, body {
@@ -58,7 +58,7 @@ body {
   position: relative;
   z-index: 1;
   background: #fff;
-  border: 3px solid var(--red);
+  border: 10px solid var(--red);
   width: var(--card-width);
   max-width: 100%;
 }
@@ -84,10 +84,10 @@ body {
 
 .title-block h1 {
   font-weight: 900;
-  font-size: 34px;
+  font-size: 38px;
   color: #fff;
   text-transform: uppercase;
-  letter-spacing: 0.09em;
+  letter-spacing: 0.06em;
   line-height: 1;
 }
 
@@ -99,7 +99,7 @@ body {
 
 .sub-block p {
   font-weight: 800;
-  font-size: 15px;
+  font-size: 17px;
   color: #fff;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -121,7 +121,7 @@ body {
 .page-num {
   text-align: right;
   color: var(--red);
-  font-weight: 900;
+  font-weight: 700;
   line-height: 1;
   padding-top: 4px;
   flex-shrink: 0;
@@ -129,15 +129,15 @@ body {
 
 .page-num .n {
   display: block;
-  font-size: 72px;
+  font-size: 92px;
   letter-spacing: -0.03em;
   line-height: 0.88;
 }
 
 .page-num .p {
   display: block;
-  font-size: 12px;
-  letter-spacing: 0.28em;
+  font-size: 20px;
+  letter-spacing: 0.35em;
   font-weight: 800;
   margin-top: 3px;
 }
@@ -146,7 +146,7 @@ body {
 .divider {
   display: flex;
   align-items: center;
-  margin: 14px 0;
+  margin: 18px 0;
 }
 
 .dash {
@@ -172,7 +172,7 @@ body {
   border: 2px solid var(--red);
   overflow: hidden;
   margin-bottom: 16px;
-  height: 280px;
+  height: 320px;
 }
 
 /* Make the LitElement map component fill its wrapper */
@@ -186,7 +186,7 @@ forkyeah-map {
 
 .map-placeholder {
   border: 2px solid var(--red);
-  height: 200px;
+  height: 240px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -210,15 +210,15 @@ forkyeah-map {
 
 .r-row {
   position: relative;
-  height: 168px;
+  height: 190px;
 }
 
 .r-photo {
   position: absolute;
   border: 3px solid var(--red);
   overflow: hidden;
-  width: 186px;
-  height: 155px;
+  width: 210px;
+  height: 170px;
 }
 
 .r-photo img {
@@ -247,9 +247,9 @@ forkyeah-map {
   background: #fff;
   color: var(--red);
   font-weight: 800;
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: 0.13em;
-  padding: 5px 11px 4px;
+  padding: 6px 13px 5px;
   text-transform: uppercase;
   white-space: nowrap;
   display: flex;

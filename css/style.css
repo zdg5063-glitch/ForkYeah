@@ -110,14 +110,14 @@ body {
 /* figure out this one */
 .loc-badge {
   display: inline-block;
-  border: 3px solid var(--red);
-  color: var(--red);
-  font-weight: 900;
-  font-size: 10.5px;
+  color: white;
+  font-weight: 600;
+  background-color: #ff0019;
+  font-size: 24px;
   letter-spacing: 0.13em;
-  padding: 3px 8px 2px;
+  padding: 5px 13px 5px;
   text-transform: uppercase;
-  margin-top: 10px;
+  margin-top: 4px;
 }
 
 .page-num {
@@ -212,7 +212,7 @@ forkyeah-map {
 
 .r-row {
   position: relative;
-  height: 190px;
+  height: 200px;
 }
 
 .r-photo {
@@ -220,7 +220,7 @@ forkyeah-map {
   border: 3px solid var(--red);
   overflow: hidden;
   width: 210px;
-  height: 170px;
+  height: 200px;
 }
 
 .r-photo img {
@@ -240,7 +240,7 @@ forkyeah-map {
 .row-right .r-label { left: 60px; top: 50%; transform: translateY(-50%); }
 
 /* Photo on left, label on right */
-.row-left .r-photo  { left: 0; top: 7px; }
+.row-left .r-photo  { left: 0; top: 4px; }
 .row-left .r-label  { right: 20px; top: 50%; transform: translateY(-50%); }
 
 .r-label {
@@ -248,15 +248,15 @@ forkyeah-map {
   border: 2px solid var(--red);
   background: #fff;
   color: var(--red);
-  font-weight: 800;
-  font-size: 13px;
+  font-weight: 600;
+  font-size: 24px;
   letter-spacing: 0.13em;
-  padding: 6px 13px 5px;
+  padding: 5px 13px 5px;
   text-transform: uppercase;
   white-space: nowrap;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   z-index: 2;
   cursor: pointer;
   transition: background 0.15s, color 0.15s;

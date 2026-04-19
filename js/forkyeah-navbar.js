@@ -7,13 +7,19 @@ export class ForkYeahNavbar extends LitElement {
 
   static get properties() {
     return {
-      _openDropdown: { type: String, state: true },
+      _openDropdown: { type: String,  state: true },
+      _selected:     { type: Object,  state: true },
     };
   }
 
   constructor() {
     super();
     this._openDropdown = null;
+    this._selected = {
+      COUNTRY: 'All Countries',
+      BOROUGH: 'All Boroughs',
+      PRICE:   'Any Price',
+    };
 
     // Close dropdown when clicking outside the component
     this._onOutsideClick = (e) => {
@@ -37,193 +43,259 @@ export class ForkYeahNavbar extends LitElement {
     this._openDropdown = this._openDropdown === name ? null : name;
   }
 
-static get styles() {
-  return css`
-    :host {
-      display: block;
-      width: 100%;
-      font-family: 'Barlow Condensed', sans-serif;
-    }
+  _selectOption(filterName, option) {
+    // Immutable update so Lit picks up the change
+    this._selected = { ...this._selected, [filterName]: option };
+    this._openDropdown = null;
 
-    /* ── Nav bar ── */
-    nav {
-      display: flex;
-      align-items: stretch;
-      border-bottom: 10px solid #ff0019;
-      background: #fff;
-    }
+    // Broadcast the new filter state to any listeners (e.g. forkyeah-map)
+    document.dispatchEvent(new CustomEvent('forkyeah-filter', {
+      detail: { ...this._selected },
+    }));
+  }
 
-    .brand {
-      font-weight: 600;
-      font-size: 36px;
-      letter-spacing: 0.06em;
-      line-height: 1;
-      text-transform: uppercase;
-      padding: 18px 18px;
-      flex-shrink: 0;
-      color: #ff0000;
-      cursor: pointer;
-      user-select: none;
-    }
+  _isDefault(filterName) {
+    const defaults = {
+      COUNTRY: 'All Countries',
+      BOROUGH: 'All Boroughs',
+      PRICE:   'Any Price',
+    };
+    return this._selected[filterName] === defaults[filterName];
+  }
 
-    .vsep {
-      position: relative;
-      width: 4px;
-    }
+  static get styles() {
+    return css`
+      :host {
+        display: block;
+        width: 100%;
+        font-family: 'Barlow Condensed', sans-serif;
+      }
 
-    .vsep::before {
-      content: "";
-      position: absolute;
-      top: 20%;
-      bottom: 20%;
-      left: 0;
-      border-left: 1px solid #ff0000;
-    }
+      /* ── Nav bar ── */
+      nav {
+        display: flex;
+        align-items: stretch;
+        border-bottom: 10px solid #ff0019;
+        background: #fff;
+      }
 
-    /* ── Filter buttons ── */
-    .filters {
-      display: flex;
-      flex: 1;
-      align-items: stretch;
-    }
+      .brand {
+        font-weight: 600;
+        font-size: 36px;
+        letter-spacing: 0.06em;
+        line-height: 1;
+        text-transform: uppercase;
+        padding: 18px 18px;
+        flex-shrink: 0;
+        color: #ff0000;
+        cursor: pointer;
+        user-select: none;
+      }
 
-    .filter-wrap {
-      position: relative;
-      display: flex;
-      flex: 1;
-    }
+      .vsep {
+        position: relative;
+        width: 4px;
+      }
 
-    .filter-wrap::after {
-      content: "";
-      position: absolute;
-      right: 0;
-      top: 20%;
-      bottom: 20%;
-      border-right: 1px solid #ff0000;
-    }
+      .vsep::before {
+        content: "";
+        position: absolute;
+        top: 20%;
+        bottom: 20%;
+        left: 0;
+        border-left: 1px solid #ff0000;
+      }
 
-    .filter-wrap:last-child::after {
-      display: none;
-    }
+      /* ── Filter buttons ── */
+      .filters {
+        display: flex;
+        flex: 1;
+        align-items: stretch;
+      }
 
+      .filter-wrap {
+        position: relative;
+        display: flex;
+        flex: 1;
+      }
 
-    /* ── Button base ── */
-    .filter-btn {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      .filter-wrap::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 20%;
+        bottom: 20%;
+        border-right: 1px solid #ff0000;
+      }
 
-      padding: 12px 20px;
-      cursor: pointer;
+      .filter-wrap:last-child::after {
+        display: none;
+      }
 
-      background: none;
-      border: none;
+      /* ── Button base ── */
+      .filter-btn {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
 
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 600;
-      font-size: 22px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+        padding: 10px 16px;
+        cursor: pointer;
 
-      color: #ff0000;
+        background: none;
+        border: none;
 
-      position: relative;   /* added */
-      overflow: hidden;     /* added */
+        font-family: 'Barlow Condensed', sans-serif;
+        font-weight: 600;
+        font-size: 22px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
 
-      transition: color 0.2s ease;
-    }
+        color: #ff0000;
 
-    /* ── LIMITED Hover layer ── */
-    .filter-btn::before {
-      content: "";
-      position: absolute;
-      top: 20%;     /* controls vertical size */
-      bottom: 20%;
-      left: 0;
-      right: 0;
+        position: relative;
+        overflow: hidden;
 
-      background: repeating-linear-gradient(
-        45deg,
-        #ff0000,
-        #ff0000 8px,
-        #ff0000 8px,
-        #ff0000 16px
-      );
+        transition: color 0.2s ease;
+      }
 
-      opacity: 0;
-      transition: opacity 0.2s ease;
-      z-index: 0;
-    }
+      /* Active filter — button has a subtle red background tint */
+      .filter-btn.active-filter {
+        background: #fff5f5;
+      }
 
-    .filter-btn:hover::before {
-      opacity: 1;
-    }
+      /* ── Hover layer ── */
+      .filter-btn::before {
+        content: "";
+        position: absolute;
+        top: 20%;
+        bottom: 20%;
+        left: 0;
+        right: 0;
 
-    /* keep text above */
-    .filter-btn * {
-      position: relative;
-      z-index: 1;
-    }
+        background: #ff0000;
 
-    .filter-btn:hover {
-      color: #ffffff;
-    }
+        opacity: 0;
+        transition: opacity 0.2s ease;
+        z-index: 0;
+      }
 
-    .filter-btn:hover .chev {
-      color: #ffffff;
-    }
+      .filter-btn:hover::before {
+        opacity: 1;
+      }
 
-    .filter-btn .chev {
-      font-size: 8px;
-      color: #E8192C;
-      line-height: 1;
-      transition: color 0.2s ease;
-    }
+      /* keep text above */
+      .filter-btn * {
+        position: relative;
+        z-index: 1;
+      }
 
-    /* ── Dropdown panel ── */
-    .dropdown {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      min-width: 160px;
-      background: #fff;
-      border: 2px solid #E8192C;
-      border-top: none;
-      z-index: 100;
-      flex-direction: column;
-    }
+      .filter-btn:hover {
+        color: #ffffff;
+      }
 
-    .dropdown.open {
-      display: flex;
-    }
+      .filter-btn:hover .chev {
+        color: #ffffff;
+      }
 
-    .dropdown-item {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700;
-      font-size: 12px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 9px 14px;
-      cursor: pointer;
-      color: #111;
-      transition: background 0.12s, color 0.12s;
-      border-bottom: 1px solid #f0f0f0;
-    }
+      .filter-btn .chev {
+        font-size: 8px;
+        color: #E8192C;
+        line-height: 1;
+        transition: color 0.2s ease;
+      }
 
-    .dropdown-item:last-child {
-      border-bottom: none;
-    }
+      /* Currently selected value shown below the filter name */
+      .filter-val {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #E8192C;
+        line-height: 1;
+        margin-bottom: 2px;
+        transition: color 0.2s ease;
+      }
 
-    .dropdown-item:hover {
-      background: #E8192C;
-      color: #fff;
-    }
-    
-  `;
-}
+      .filter-btn:hover .filter-val {
+        color: #fff;
+      }
+
+      /* ── Dropdown panel ── */
+      .dropdown {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 160px;
+        background: #fff;
+        border: 2px solid #E8192C;
+        border-top: none;
+        z-index: 100;
+        flex-direction: column;
+      }
+
+      .dropdown.open {
+        display: flex;
+      }
+
+      .dropdown-item {
+        font-family: 'Barlow Condensed', sans-serif;
+        font-weight: 700;
+        font-size: 12px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 9px 14px;
+        cursor: pointer;
+        color: #111;
+        transition: background 0.12s, color 0.12s;
+        border-bottom: 1px solid #f0f0f0;
+      }
+
+      .dropdown-item:last-child {
+        border-bottom: none;
+      }
+
+      .dropdown-item:hover,
+      .dropdown-item.selected {
+        background: #E8192C;
+        color: #fff;
+      }
+
+      /* ── Mobile responsive ── */
+      @media (max-width: 600px) {
+        nav {
+          border-bottom-width: 5px;
+        }
+
+        /* Hide the right brand on small screens to save space */
+        .brand-right {
+          display: none;
+        }
+
+        .brand {
+          font-size: 24px;
+          padding: 12px 10px;
+          line-height: 1;
+        }
+
+        .filter-btn {
+          font-size: 14px;
+          letter-spacing: 0.05em;
+          padding: 8px 6px;
+        }
+
+        .filter-val {
+          font-size: 8px;
+        }
+
+        .filter-btn .chev {
+          font-size: 7px;
+        }
+      }
+    `;
+  }
 
   // Dropdown options per filter
   _options() {
@@ -248,15 +320,21 @@ static get styles() {
           ${['COUNTRY', 'BOROUGH', 'PRICE'].map(name => html`
             <div class="filter-wrap">
               <button
-                class="filter-btn"
+                class="filter-btn ${!this._isDefault(name) ? 'active-filter' : ''}"
                 @click="${() => this._toggleDropdown(name)}"
               >
                 ${name}
+                ${!this._isDefault(name) ? html`
+                  <span class="filter-val">${this._selected[name]}</span>
+                ` : ''}
                 <span class="chev">▼</span>
               </button>
               <div class="dropdown ${this._openDropdown === name ? 'open' : ''}">
                 ${opts[name].map(opt => html`
-                  <div class="dropdown-item" @click="${() => { this._openDropdown = null; }}">${opt}</div>
+                  <div
+                    class="dropdown-item ${this._selected[name] === opt ? 'selected' : ''}"
+                    @click="${() => this._selectOption(name, opt)}"
+                  >${opt}</div>
                 `)}
               </div>
             </div>
@@ -265,8 +343,8 @@ static get styles() {
 
         <div class="vsep"></div>
 
-        <!-- Right brand -->
-        <div class="brand" style="text-align:right">FORK<br>YEAH!</div>
+        <!-- Right brand (hidden on mobile) -->
+        <div class="brand brand-right" style="text-align:right">FORK<br>YEAH!</div>
       </nav>
     `;
   }

@@ -334,94 +334,97 @@ forkyeah-map {
 /* ─── Page 03: Restaurant cards ───────────── */
 .restaurant-cards {
   display: flex;
-  gap: 14px;
+  gap: 12px;
 }
 
 .rest-card {
   flex: 1;
-  border: 2px solid var(--red);
+  border: 8px solid var(--red); 
   overflow: hidden;
+  background: #ffffff; 
 }
 
+/* image stays same */
 .rest-card-photo {
   width: 100%;
-  height: 130px;
+  height: 200px; 
   overflow: hidden;
 }
 
-.rest-card-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.4s ease;
-}
-
-.rest-card:hover .rest-card-photo img {
-  transform: scale(1.04);
-}
-
+/* ── Actions row (price + menu pills) ── */
 .rest-card-actions {
   display: flex;
-  gap: 8px;
-  padding: 8px 10px 6px;
+  justify-content: center; /* center pills */
+  gap: 24px;
+  padding: 8px 10px 0px;
 }
 
+/* pill buttons now outlined instead of filled */
 .pill-btn {
   display: flex;
   align-items: center;
-  gap: 5px;
-  border: none;
+  gap: 8px;
+  border: 4px solid var(--red);
+  background: transparent;
+  color: var(--red);
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 10px 36px;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.pill-btn:hover {
   background: var(--red);
   color: #fff;
-  font-family: var(--font);
-  font-weight: 700;
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 4px 10px 3px;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: opacity 0.15s;
 }
 
-.pill-btn:hover { opacity: 0.82; }
-
+/* red dot inside pills */
 .pill-dot {
-  width: 7px;
-  height: 7px;
-  background: #fff;
+  width: 14px;
+  height: 14px;
+  background: var(--red);
   border-radius: 50%;
-  flex-shrink: 0;
 }
 
+/* ── Restaurant name (big center pill) ── */
 .rest-card-name {
-  font-weight: 800;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--red);
-  padding: 4px 10px 2px;
-  line-height: 1.2;
-}
-
-.rest-card-addr {
+  display: block;
+  margin: 12px auto 12px;
   font-weight: 600;
-  font-size: 9.5px;
+  font-size: 24px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #555;
-  padding: 0 10px 10px;
+  color: #fff;
+  background: var(--red);
+  padding: 16px;
+  border-radius: 40px; 
+  text-align: center;
+}
+
+/* ── Address ── */
+.rest-card-addr {
+  text-align: center;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--red);
+  padding: 4px 0 12px;
 }
 
 /* ─── View More button ────────────────────── */
 .view-more-btn {
   margin-top: 16px;
-  border: 2px solid var(--red);
+  border: 8px solid var(--red);
   color: var(--red);
   font-family: var(--font);
-  font-weight: 800;
-  font-size: 12px;
+  font-weight: 600;
+  font-size: 24px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   text-align: center;
@@ -429,7 +432,7 @@ forkyeah-map {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 24px;
   cursor: pointer;
   transition: background 0.15s, color 0.15s;
 }

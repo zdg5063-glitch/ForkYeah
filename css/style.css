@@ -34,8 +34,8 @@ body {
  display: flex;
  flex-direction: column;
  align-items: center;
- padding: 2.5rem 1.25rem 3.75rem;  /* 40px 20px 60px */
- gap: 2.25rem;                      /* 36px */
+ padding: 2.5rem 1.25rem 3.75rem;
+ gap: 2.25rem;
  position: relative;
  overflow-x: hidden;
 }
@@ -76,7 +76,7 @@ body {
 
 /* ─── Content padding ─────────────────────── */
 .content {
- padding: 1.375rem 1.625rem 1.875rem;  /* 22px 26px 30px */
+ padding: 1.375rem 1.625rem 1.875rem;
 }
 
 
@@ -85,20 +85,20 @@ body {
  display: flex;
  justify-content: space-between;
  align-items: flex-start;
- margin-bottom: 0.75rem;  /* 12px */
+ margin-bottom: 0.75rem;
 }
 
 
 .title-block {
  display: inline-block;
  background: var(--red);
- padding: 0.3125em 0.8125em;  /* em: scales with h1 font size */
+ padding: 0.3125em 0.8125em;
 }
 
 
 .title-block h1 {
  font-weight: 600;
- font-size: 3rem;           /* 48px */
+ font-size: 3rem;
  color: #fff;
  text-transform: uppercase;
  letter-spacing: 0.06em;
@@ -115,7 +115,7 @@ body {
 
 .sub-block p {
  font-weight: 600;
- font-size: 3rem;           /* 48px */
+ font-size: 3rem;
  color: #fff;
  text-transform: uppercase;
  letter-spacing: 0.08em;
@@ -128,11 +128,11 @@ body {
  color: white;
  font-weight: 600;
  background-color: #ff0019;
- font-size: 1.5rem;         /* 24px */
+ font-size: 1.5rem;
  letter-spacing: 0.13em;
  padding: 0.3125em 0.8125em;
  text-transform: uppercase;
- margin-top: 0.25rem;       /* 4px */
+ margin-top: 0.25rem;
 }
 
 
@@ -141,14 +141,14 @@ body {
  color: var(--red);
  font-weight: 600;
  line-height: 1;
- padding-top: 0.5rem;       /* 8px */
+ padding-top: 0.5rem;
  flex-shrink: 0;
 }
 
 
 .page-num .n {
  display: block;
- font-size: 5.75rem;        /* 92px */
+ font-size: 5.75rem;
  letter-spacing: -0.03em;
  line-height: 0.88;
 }
@@ -156,10 +156,10 @@ body {
 
 .page-num .p {
  display: block;
- font-size: 1.25rem;        /* 20px */
+ font-size: 1.25rem;
  letter-spacing: 0.35em;
  font-weight: 800;
- margin-top: 0.1875rem;     /* 3px */
+ margin-top: 0.1875rem;
 }
 
 
@@ -167,7 +167,7 @@ body {
 .divider {
  display: flex;
  align-items: center;
- margin: 0.75rem 0;         /* 12px */
+ margin: 0.75rem 0;
 }
 
 
@@ -178,7 +178,7 @@ body {
 
 
 .fork-dot {
- width: 2rem;               /* 32px */
+ width: 2rem;
  height: 2rem;
  background: var(--red);
  border-radius: 50%;
@@ -186,7 +186,7 @@ body {
  align-items: center;
  justify-content: center;
  color: #fff;
- font-size: 0.875rem;       /* 14px */
+ font-size: 0.875rem;
  flex-shrink: 0;
 }
 
@@ -195,8 +195,8 @@ body {
 .map-wrapper {
  border: var(--border-thick) solid var(--red);
  overflow: hidden;
- margin-bottom: 1rem;       /* 16px */
- height: 20rem;             /* 320px */
+ margin-bottom: 1rem;
+ height: 20rem;
 }
 
 
@@ -211,7 +211,7 @@ forkyeah-map {
 
 .map-placeholder {
  border: var(--border-thick) solid var(--red);
- height: 15rem;             /* 240px */
+ height: 15rem;
  display: flex;
  align-items: center;
  justify-content: center;
@@ -221,7 +221,7 @@ forkyeah-map {
 .map-placeholder span {
  font-family: var(--font);
  font-weight: 900;
- font-size: 2.625rem;       /* 42px */
+ font-size: 2.625rem;
  color: var(--red);
  text-transform: uppercase;
  letter-spacing: 0.08em;
@@ -236,9 +236,12 @@ forkyeah-map {
 }
 
 
+/* FIX: fixed height (not min-height) so opening a dropdown
+   never pushes the rows below it downward */
 .r-row {
  position: relative;
- min-height: 12.5rem;
+ height: 12.5rem;           /* fixed — dropdowns float over content */
+ overflow: visible;         /* let the absolute dropdown escape the row */
 }
 
 
@@ -285,6 +288,7 @@ forkyeah-map {
  display: flex;
  flex-direction: column;
  z-index: 4;
+ overflow: visible;         /* FIX: let absolute dropdown escape */
 }
 
 
@@ -339,21 +343,30 @@ forkyeah-map {
 }
 
 
+/* FIX: absolutely positioned so it overlays the page below
+   instead of pushing it down */
 .r-dropdown {
+ position: absolute;       /* FIX: was in flow; now floats */
+ top: 100%;
+ left: 0;
+ width: 100%;
+ z-index: 20;
+
+ /* hidden state */
  max-height: 0;
  overflow: hidden;
  opacity: 0;
- transform: translateY(-8px);
+ pointer-events: none;
+ transform: translateY(-6px);
  transition:
    max-height 0.35s ease,
    opacity 0.3s ease,
    transform 0.3s ease,
-   padding 0.3s ease,
-   margin 0.3s ease;
+   padding 0.3s ease;
+
  background: #fff;
  border: 2px solid var(--red);
  color: var(--red);
- width: 100%;
  font-size: 0.95rem;
  font-weight: 600;
  line-height: 1.4;
@@ -362,14 +375,10 @@ forkyeah-map {
 }
 
 
-.r-info-left .r-dropdown {
- margin-top: 0;
- text-align: left;
-}
-
-
+/* right-side label: align dropdown to right edge */
 .r-info-right .r-dropdown {
- margin-top: 0;
+ left: auto;
+ right: 0;
  text-align: left;
 }
 
@@ -377,9 +386,10 @@ forkyeah-map {
 .r-dropdown.open {
  max-height: 220px;
  opacity: 1;
+ pointer-events: auto;
  transform: translateY(0);
  padding: 0.875rem;
- margin-top: 0.35rem;
+ margin-top: 0.2rem;
 }
 
 
@@ -417,13 +427,12 @@ forkyeah-map {
 }
 
 
-
 /* ─── Page 03: Globe section ──────────────── */
 .globe-section {
  display: flex;
  align-items: center;
  justify-content: center;
- gap: 1.25rem;              /* 20px */
+ gap: 1.25rem;
  padding: 1rem 0;
 }
 
@@ -431,7 +440,7 @@ forkyeah-map {
 .globe-col-labels {
  display: flex;
  flex-direction: column;
- gap: 1.625rem;             /* 26px */
+ gap: 1.625rem;
  align-items: flex-end;
 }
 
@@ -441,9 +450,7 @@ forkyeah-map {
 }
 
 
-/* Replace your current .g-label section with this */
-
-
+/* FIX: relative so the absolute dropdown anchors to it */
 .g-info-box {
  position: relative;
  width: 100%;
@@ -478,16 +485,27 @@ forkyeah-map {
 }
 
 
+/* FIX: absolutely positioned so it overlays the globe/page
+   instead of pushing the globe section around */
 .g-dropdown {
+ position: absolute;       /* FIX: was in flow; now floats */
+ top: 100%;
+ left: 0;
+ width: 100%;
+ z-index: 20;
+
+ /* hidden state */
  max-height: 0;
  overflow: hidden;
  opacity: 0;
- transform: translateY(-8px);
+ pointer-events: none;
+ transform: translateY(-6px);
  transition:
    max-height 0.35s ease,
    opacity 0.3s ease,
    transform 0.3s ease,
    padding 0.3s ease;
+
  background: #fff;
  border: 2px solid var(--red);
  border-top: none;
@@ -497,23 +515,22 @@ forkyeah-map {
  letter-spacing: 0.04em;
  line-height: 1.4;
  padding: 0 0.875rem;
- width: 100%;
 }
 
 
 .g-dropdown.open {
  max-height: 220px;
  opacity: 1;
+ pointer-events: auto;
  transform: translateY(0);
  padding: 0.875rem;
- margin-top: -2px;
 }
 
 
 /* ─── Page 03: Restaurant cards ───────────── */
 .restaurant-cards {
  display: flex;
- gap: 0.75rem;              /* 12px */
+ gap: 0.75rem;
 }
 
 
@@ -527,7 +544,7 @@ forkyeah-map {
 
 .rest-card-photo {
  width: 100%;
- height: 12.5rem;           /* 200px */
+ height: 12.5rem;
  overflow: hidden;
 }
 
@@ -550,7 +567,7 @@ forkyeah-map {
 .rest-card-actions {
  display: flex;
  justify-content: center;
- gap: 1.5rem;               /* 24px */
+ gap: 1.5rem;
  padding: 0.5em 0.625em 0;
 }
 
@@ -564,10 +581,10 @@ forkyeah-map {
  color: var(--red);
  font-family: var(--font);
  font-weight: 600;
- font-size: 1.125rem;       /* 18px */
+ font-size: 1.125rem;
  letter-spacing: 0.12em;
  text-transform: uppercase;
- padding: 0.556em 2em;      /* em: scales with font-size */
+ padding: 0.556em 2em;
  border-radius: 2.5em;
  cursor: pointer;
  transition: all 0.5s ease;
@@ -581,7 +598,7 @@ forkyeah-map {
 
 
 .pill-dot {
- width: 0.875rem;           /* 14px */
+ width: 0.875rem;
  height: 0.875rem;
  background: var(--red);
  border-radius: 50%;
@@ -592,12 +609,12 @@ forkyeah-map {
  display: block;
  margin: 0.75rem auto;
  font-weight: 600;
- font-size: 1.5rem;         /* 24px */
+ font-size: 1.5rem;
  letter-spacing: 0.08em;
  text-transform: uppercase;
  color: #fff;
  background: var(--red);
- padding: 0.667em 1em;      /* em: scales with font-size */
+ padding: 0.667em 1em;
  border-radius: 2.5em;
  text-align: center;
 }
@@ -606,7 +623,7 @@ forkyeah-map {
 .rest-card-addr {
  text-align: center;
  font-weight: 700;
- font-size: 1.125rem;       /* 18px */
+ font-size: 1.125rem;
  letter-spacing: 0.12em;
  text-transform: uppercase;
  color: var(--red);
@@ -621,7 +638,7 @@ forkyeah-map {
  color: var(--red);
  font-family: var(--font);
  font-weight: 600;
- font-size: 1.5rem;         /* 24px */
+ font-size: 1.5rem;
  letter-spacing: 0.14em;
  text-transform: uppercase;
  text-align: center;
@@ -641,138 +658,108 @@ forkyeah-map {
 }
 
 
-
-
 /* ═══════════════════════════════════════════
-  MOBILE RESPONSIVE — max-width: 600px
-  (and intermediate tablet at 760px)
+  MOBILE RESPONSIVE
 ═══════════════════════════════════════════ */
 
-
-/* ─── Tablet: card fills screen ───────────── */
 @media (max-width: 800px) {
  body {
    padding: 1rem 0.625rem 2.5rem;
    gap: 1.25rem;
  }
 
-
  .page-card {
-   border-width: 0.375rem;  /* 6px */
+   border-width: 0.375rem;
  }
-
 
  .content {
    padding: 1rem 1rem 1.375rem;
  }
 }
 
-
-/* ─── Mobile: full layout overhaul ────────── */
 @media (max-width: 600px) {
 
-
- /* ── Page card ── */
  .page-card {
-   border-width: 0.3125rem; /* 5px */
+   border-width: 0.3125rem;
  }
-
 
  .content {
    padding: 0.75rem 0.75rem 1.125rem;
  }
 
-
- /* ── Header ── */
  .title-block h1 {
-   font-size: 1.75rem;      /* 28px */
+   font-size: 1.75rem;
    letter-spacing: 0.04em;
  }
-
 
  .sub-block p {
-   font-size: 1.25rem;      /* 20px */
+   font-size: 1.25rem;
    letter-spacing: 0.04em;
  }
 
-
  .loc-badge {
-   font-size: 1rem;         /* 16px */
+   font-size: 1rem;
    letter-spacing: 0.08em;
  }
 
-
  .page-num .n {
-   font-size: 3.25rem;      /* 52px */
+   font-size: 3.25rem;
  }
 
-
  .page-num .p {
-   font-size: 0.8125rem;    /* 13px */
+   font-size: 0.8125rem;
    letter-spacing: 0.2em;
  }
 
-
- /* ── Divider ── */
  .dash {
-   border-top-width: 0.375rem; /* 6px */
+   border-top-width: 0.375rem;
  }
 
-
- /* ── Page 01: Maps ── */
  .map-wrapper {
-   height: 13.75rem;        /* 220px */
+   height: 13.75rem;
    border-width: 0.3125rem;
    margin-bottom: 0.75rem;
  }
 
-
  .map-placeholder {
-   height: 8.75rem;         /* 140px */
+   height: 8.75rem;
    border-width: 0.3125rem;
  }
 
-
  .map-placeholder span {
-   font-size: 1.5rem;       /* 24px */
+   font-size: 1.5rem;
  }
 
-
- /* ── Page 02: Restaurant rows ── */
  .r-row {
-   height: 8.125rem;        /* 130px */
+   height: 8.125rem;
  }
-
 
  .r-photo {
    width: 8.125rem;
    height: 8.125rem;
  }
 
-
- .row-right .r-label {
+ .r-info-left {
    left: 0.5rem;
-   font-size: 0.9375rem;    /* 15px */
-   letter-spacing: 0.06em;
-   padding: 0.267em 0.533em;
+   width: 12rem;
  }
 
-
- .row-left .r-label {
+ .r-info-right {
    right: 0.5rem;
+   width: 12rem;
+ }
+
+ .r-label {
    font-size: 0.9375rem;
    letter-spacing: 0.06em;
    padding: 0.267em 0.533em;
  }
 
-
- /* ── Page 03: Globe section ── */
  .globe-section {
    flex-direction: column;
    gap: 0.75rem;
    padding: 0.625rem 0;
  }
-
 
  .globe-col-labels {
    flex-direction: row;
@@ -782,38 +769,30 @@ forkyeah-map {
    align-items: center;
  }
 
-
  .globe-col-right {
    align-items: center;
  }
 
-
  .g-label {
-   font-size: 0.9375rem;    /* 15px */
+   font-size: 0.9375rem;
    letter-spacing: 0.07em;
    padding: 0.267em 0.667em;
    border-width: 3px;
  }
 
-
- /* ── Page 03: Restaurant cards — stack ── */
  .restaurant-cards {
    flex-direction: column;
    gap: 0.75rem;
  }
 
-
  .rest-card-photo {
-   height: 10rem;           /* 160px */
+   height: 10rem;
  }
 
-
- /* ── View More ── */
  .view-more-btn {
-   font-size: 0.875rem;     /* 14px */
+   font-size: 0.875rem;
    letter-spacing: 0.1em;
    padding: 0.643em 0.857em;
    gap: 0.5rem;
  }
 }
-

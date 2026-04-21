@@ -232,13 +232,13 @@ forkyeah-map {
 .restaurants {
  display: flex;
  flex-direction: column;
- gap: 0.875rem;             /* 14px */
+ gap: 0.875rem;
 }
 
 
 .r-row {
  position: relative;
- height: 12.5rem;           /* 200px */
+ min-height: 12.5rem;
 }
 
 
@@ -246,8 +246,9 @@ forkyeah-map {
  position: absolute;
  border: 3px solid var(--red);
  overflow: hidden;
- width: 13.125rem;          /* 210px */
- height: 12.5rem;           /* 200px */
+ width: 13.125rem;
+ height: 12.5rem;
+ z-index: 2;
 }
 
 
@@ -266,43 +267,133 @@ forkyeah-map {
 
 
 /* Photo on right, label on left */
-.row-right .r-photo { right: 0; top: 0; }
-.row-right .r-label { left: 3.75rem; top: 50%; transform: translateY(-50%); }
+.row-right .r-photo {
+ right: 0;
+ top: 0;
+}
 
 
 /* Photo on left, label on right */
-.row-left .r-photo  { left: 0; top: 4px; }
-.row-left .r-label  { right: 1.25rem; top: 50%; transform: translateY(-50%); }
+.row-left .r-photo {
+ left: 0;
+ top: 4px;
+}
+
+
+.r-info-box {
+ position: absolute;
+ display: flex;
+ flex-direction: column;
+ z-index: 4;
+}
+
+
+.r-info-left {
+ left: 2rem;
+ top: 50%;
+ transform: translateY(-50%);
+ align-items: flex-start;
+ width: 18rem;
+}
+
+
+.r-info-right {
+ right: 1.25rem;
+ top: 50%;
+ transform: translateY(-50%);
+ align-items: flex-end;
+ width: 18rem;
+}
 
 
 .r-label {
- position: absolute;
+ position: relative;
  border: 2px solid var(--red);
  background: #fff;
  color: var(--red);
  font-weight: 600;
- font-size: 1.5rem;         /* 24px */
+ font-size: 1.5rem;
  letter-spacing: 0.13em;
  padding: 0.3125em 0.8125em;
  text-transform: uppercase;
  white-space: nowrap;
- display: flex;
+ display: inline-flex;
  align-items: center;
  gap: 0.5em;
- z-index: 2;
+ z-index: 5;
  cursor: pointer;
- transition: background 0.15s, color 0.15s;
+ transition: background 0.25s ease, color 0.25s ease;
+ font-family: var(--font);
 }
 
 
-.r-label:hover {
+.r-label:hover,
+.r-label.active {
  background: var(--red);
  color: #fff;
 }
 
 
 .r-arr {
- font-size: 0.5625em;       /* ~9px relative to label's 1.5rem */
+ font-size: 0.5625em;
+}
+
+
+.r-dropdown {
+ max-height: 0;
+ overflow: hidden;
+ opacity: 0;
+ transform: translateY(-8px);
+ transition:
+   max-height 0.35s ease,
+   opacity 0.3s ease,
+   transform 0.3s ease,
+   padding 0.3s ease,
+   margin 0.3s ease;
+ background: #fff;
+ border: 2px solid var(--red);
+ color: var(--red);
+ width: 100%;
+ font-size: 0.95rem;
+ font-weight: 600;
+ line-height: 1.4;
+ letter-spacing: 0.03em;
+ padding: 0 0.875rem;
+}
+
+
+.r-info-left .r-dropdown {
+ margin-top: 0;
+ text-align: left;
+}
+
+
+.r-info-right .r-dropdown {
+ margin-top: 0;
+ text-align: left;
+}
+
+
+.r-dropdown.open {
+ max-height: 220px;
+ opacity: 1;
+ transform: translateY(0);
+ padding: 0.875rem;
+ margin-top: 0.35rem;
+}
+
+
+.r-dropdown-title {
+ font-size: 1.1rem;
+ font-weight: 700;
+ letter-spacing: 0.08em;
+ margin-bottom: 0.5rem;
+ text-transform: uppercase;
+}
+
+
+.r-dropdown-line + .r-dropdown-line {
+ margin-top: 0.35rem;
 }
 
 
@@ -317,13 +408,14 @@ forkyeah-map {
 
 .r-dot {
  position: absolute;
- width: 0.5rem;             /* 8px */
+ width: 0.5rem;
  height: 0.5rem;
  background: var(--red);
  border-radius: 50%;
  z-index: 3;
  transform: translate(-50%, -50%);
 }
+
 
 
 /* ─── Page 03: Globe section ──────────────── */

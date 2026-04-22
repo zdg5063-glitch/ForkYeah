@@ -46,9 +46,9 @@
 
    <div class="content">
      <div class="header-row">
-       <div class="header-left">
+       <div class="header-left" style="display:flex; flex-direction:column; align-items:flex-start; gap:0.35rem;">
          <div class="title-block"><h1>EXPLORE NYC</h1></div>
-         <div class="sub-block" style="margin-top:7px"><p>TASTE THE WORLD</p></div>
+         <div class="sub-block"><p>TASTE THE WORLD</p></div>
        </div>
        <div class="page-num">
          <span class="n">01</span>
@@ -64,15 +64,9 @@
      </div>
 
 
-     <!-- NYC Map — actual interactive Leaflet map -->
-     <div class="map-wrapper">
+     <!-- NYC Map — takes up full space -->
+     <div class="map-wrapper" style="height: 37rem;">
        <forkyeah-map></forkyeah-map>
-     </div>
-
-
-     <!-- World Map — placeholder box matching Figma -->
-     <div class="map-placeholder">
-       <span>WORLD MAP</span>
      </div>
    </div>
  </section>
@@ -266,20 +260,24 @@
        </div>
      </div>
 
-
-     <div class="divider" style="margin: 20px 0 18px;">
-       <div class="dash"></div>
-       <div class="fork-dot" style="font-size:11px; letter-spacing:0">✦</div>
-       <div class="dash"></div>
-     </div>
-
-
      <div class="restaurant-cards">
+
+       <div class="rest-card">
+         <div class="rest-card-photo">
+           <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80" alt="Nargis Cafe">
+         </div>
+         <div class="rest-card-actions">
+           <button class="pill-btn" type="button"><span class="pill-dot"></span> info</button>
+           <button class="pill-btn" type="button"><span class="pill-dot"></span> menu</button>
+         </div>
+         <div class="rest-card-name">NARGIS CAFE</div>
+         <div class="rest-card-addr">2818 CONEY ISLAND AVE, BROOKLYN</div>
+       </div>
 
 
        <div class="rest-card">
          <div class="rest-card-photo">
-           <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=400&q=80" alt="Farida">
+           <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=400&q=80" alt="Farida">
          </div>
          <div class="rest-card-actions">
            <button class="pill-btn" type="button"><span class="pill-dot"></span> info</button>

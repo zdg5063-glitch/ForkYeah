@@ -16,7 +16,7 @@
  --red:  #ff0019;
  --gray: #ffffff;
  --font: 'Barlow Condensed', sans-serif;
- --card-width: 760px;       /* layout max — intentionally px */
+ --card-width: 875px;       /* layout max — intentionally px */
  --border-thick: 0.625rem;  /* 10px → scales with root font */
  --border-mid:   0.5rem;    /* 8px  */
  --border-thin:  0.25rem;   /* 4px  */

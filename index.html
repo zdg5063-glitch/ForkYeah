@@ -5,44 +5,35 @@
  <meta http-equiv="X-UA-Compatible" content="IE=edge">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
  <link rel="manifest" href="pwa-manifest.json">
  <meta name="theme-color" content="#E8192C">
  <link rel="icon" href="icons/fork-yeah-icon-192.png">
  <link rel="apple-touch-icon" href="icons/fork-yeah-icon-192.png">
 
-
  <title>ForkYeah</title>
-
 
  <link rel="preconnect" href="https://fonts.googleapis.com">
  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&display=swap" rel="stylesheet">
  <link rel="stylesheet" href="css/style.css">
 
-
  <!-- Leaflet JS must load globally before the map component -->
  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
 
  <!-- Web Components -->
  <script type="module" src="js/forkyeah-navbar.js"></script>
  <script type="module" src="js/forkyeah-map.js"></script>
 </head>
 
-
 <body>
-
 
  <!-- ── Tiled background wallpaper ── -->
  <div id="bg"></div>
-
 
  <!-- ══════════════════════════════════════════════
       PAGE 01 — EXPLORE NYC
  ══════════════════════════════════════════════ -->
  <section class="page-card">
    <forkyeah-navbar></forkyeah-navbar>
-
 
    <div class="content">
      <div class="header-row">
@@ -56,13 +47,11 @@
        </div>
      </div>
 
-
      <div class="divider">
        <div class="dash"></div>
        <div class="fork-dot">🍴</div>
        <div class="dash"></div>
      </div>
-
 
      <!-- NYC Map — takes up full space -->
      <div class="map-wrapper" style="height: 37rem;">
@@ -71,13 +60,11 @@
    </div>
  </section>
 
-
  <!-- ══════════════════════════════════════════════
       PAGE 02 — FEATURED BITES
  ══════════════════════════════════════════════ -->
  <section class="page-card">
    <forkyeah-navbar></forkyeah-navbar>
-
 
    <div class="content">
      <div class="header-row">
@@ -92,17 +79,14 @@
        </div>
      </div>
 
-
      <div class="divider">
        <div class="dash"></div>
        <div class="fork-dot">🍴</div>
        <div class="dash"></div>
      </div>
 
-
      <!-- Restaurant rows with dropdown info -->
      <div class="restaurants">
-
 
        <!-- COMAL -->
        <div class="r-row row-right" id="r1">
@@ -119,19 +103,16 @@
            </div>
          </div>
 
-
          <div class="r-photo">
            <img src="https://axwwgrkdco.cloudimg.io/v7/__gmpics3__/da61538c3d3043948769f77066696cf0.jpg?w=1200&h=1200&org_if_sml=1" alt="Comal restaurant in New York City">
          </div>
        </div>
-
 
        <!-- CAFE BOULUD -->
        <div class="r-row row-left" id="r2">
          <div class="r-photo">
            <img src="https://axwwgrkdco.cloudimg.io/v7/__gmpics3__/50638a3d4a8e4405acc0ade451b10a38.jpeg?w=900&h=900&org_if_sml=1" alt="Cafe Boulud in New York City">
          </div>
-
 
          <div class="r-info-box r-info-right">
            <button class="r-label" data-restaurant="cafeboulud" type="button">
@@ -146,7 +127,6 @@
            </div>
          </div>
        </div>
-
 
        <!-- SUSHI NAKAZAWA -->
        <div class="r-row row-right" id="r3">
@@ -163,24 +143,20 @@
            </div>
          </div>
 
-
          <div class="r-photo">
            <img src="https://axwwgrkdco.cloudimg.io/v7/__gmpics3__/415bba3551414e04b6793383d28c0b6c.jpeg?w=900&h=900&org_if_sml=1" alt="Sushi Nakazawa in New York City">
          </div>
        </div>
 
-
      </div>
    </div>
  </section>
-
 
  <!-- ══════════════════════════════════════════════
       PAGE 03 — FEATURED COUNTRY: UZBEKISTAN
  ══════════════════════════════════════════════ -->
  <section class="page-card">
    <forkyeah-navbar></forkyeah-navbar>
-
 
    <div class="content">
      <div class="header-row">
@@ -194,17 +170,14 @@
        </div>
      </div>
 
-
      <div class="divider">
        <div class="dash"></div>
        <div class="fork-dot">🍴</div>
        <div class="dash"></div>
      </div>
 
-
      <div class="globe-section">
        <div class="globe-col-labels">
-
 
          <div class="g-info-box">
            <button class="g-label" data-info="cuisine" type="button">
@@ -215,7 +188,6 @@
            </div>
          </div>
 
-
          <div class="g-info-box">
            <button class="g-label" data-info="population" type="button">
              POPULATION <span class="r-arr">▶</span>
@@ -225,17 +197,13 @@
            </div>
          </div>
 
-
        </div>
-
 
        <div class="globe">
          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Uzbekistan_%28centered_orthographic_projection%29.svg/250px-Uzbekistan_%28centered_orthographic_projection%29.svg.png" alt="Uzbekistan on the globe">
        </div>
 
-
        <div class="globe-col-labels globe-col-right">
-
 
          <div class="g-info-box">
            <button class="g-label" data-info="religions" type="button">
@@ -246,7 +214,6 @@
            </div>
          </div>
 
-
          <div class="g-info-box">
            <button class="g-label" data-info="languages" type="button">
              <span class="r-arr">◀</span> LANGUAGES
@@ -255,7 +222,6 @@
              Uzbek is the official language. Russian is also widely spoken, especially in cities, and some people speak Tajik and other regional languages.
            </div>
          </div>
-
 
        </div>
      </div>
@@ -274,7 +240,6 @@
          <div class="rest-card-addr">2818 CONEY ISLAND AVE, BROOKLYN</div>
        </div>
 
-
        <div class="rest-card">
          <div class="rest-card-photo">
            <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=400&q=80" alt="Farida">
@@ -287,30 +252,13 @@
          <div class="rest-card-addr">32 CEDAR ST, NEW YORK</div>
        </div>
 
-
-       <div class="rest-card">
-         <div class="rest-card-photo">
-           <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&q=80" alt="Urgut Dish Markazi">
-         </div>
-         <div class="rest-card-actions">
-           <button class="pill-btn" type="button"><span class="pill-dot"></span> info</button>
-           <button class="pill-btn" type="button"><span class="pill-dot"></span> menu</button>
-         </div>
-         <div class="rest-card-name">URGUT DISH MARKAZI</div>
-         <div class="rest-card-addr">BIG CONEY ISLAND AVE, BROOKLYN</div>
-       </div>
-
-
      </div>
-
 
 <a href="uzbekistan.html" class="view-more-btn">
   <span>✦</span> VIEW MORE UZBEKISTAN RESTAURANTS HERE <span>✦</span>
 </a>
 
-  
  </section>
-
 
  <!-- ── Service Worker ── -->
  <script>
@@ -321,13 +269,11 @@
    }
  </script>
 
-
  <!-- ── Background wallpaper ── -->
  <script>
    (function () {
      const bg = document.getElementById('bg');
      const vw = Math.max(window.innerWidth, 1200);
-
 
      const words = [
        { t: 'FORK', s: 110, w: 900 },
@@ -345,17 +291,14 @@
        { t: 'YEA', s: 80, w: 900 },
      ];
 
-
      const COLS = 6, ROWS = 18;
      const cw = vw / COLS;
      const ch = 220;
      let idx = 0;
 
-
      for (let r = 0; r < ROWS; r++) {
        for (let c = 0; c < COLS; c++) {
          if (Math.random() < 0.1) continue;
-
 
          const item = words[idx++ % words.length];
          const el = document.createElement('div');
@@ -364,17 +307,14 @@
          el.style.fontSize = item.s + 'px';
          el.style.fontWeight = item.w;
 
-
          const jx = (Math.random() - 0.5) * cw * 0.18;
          const jy = (Math.random() - 0.5) * ch * 0.18;
          el.style.left = (c * cw + jx) + 'px';
          el.style.top = (r * ch + jy) + 'px';
 
-
          const rots = [0, 0, 0, 90, -90, 180];
          const rot = rots[Math.floor(Math.random() * rots.length)];
          if (rot) el.style.transform = `rotate(${rot}deg)`;
-
 
          bg.appendChild(el);
        }
@@ -382,27 +322,25 @@
    }());
  </script>
 
-
  <!-- ── Connector lines for Page 02 restaurant rows ── -->
  <script>
    function drawConnector(rowEl, labelEl, photoEl, labelOnLeft) {
+     // Remove any previously drawn lines/dots in this row
+     rowEl.querySelectorAll('.r-line, .r-dot').forEach(el => el.remove());
+
      const rr = rowEl.getBoundingClientRect();
      const lr = labelEl.getBoundingClientRect();
      const pr = photoEl.getBoundingClientRect();
 
-
      const lineY = lr.top + lr.height / 2 - rr.top;
-
 
      const line = document.createElement('div');
      line.className = 'r-line';
      line.style.top = lineY + 'px';
 
-
      const dot = document.createElement('div');
      dot.className = 'r-dot';
      dot.style.top = lineY + 'px';
-
 
      if (labelOnLeft) {
        const x1 = lr.right - rr.left;
@@ -418,28 +356,36 @@
        dot.style.left = x1 + 'px';
      }
 
-
      rowEl.appendChild(line);
      rowEl.appendChild(dot);
    }
 
+   const connectorDefs = [
+     { id: 'r1', labelOnLeft: true },
+     { id: 'r2', labelOnLeft: false },
+     { id: 'r3', labelOnLeft: true },
+   ];
+
+   function drawAllConnectors() {
+     connectorDefs.forEach(({ id, labelOnLeft }) => {
+       const row = document.getElementById(id);
+       const label = row?.querySelector('.r-label');
+       const photo = row?.querySelector('.r-photo');
+       if (row && label && photo) drawConnector(row, label, photo, labelOnLeft);
+     });
+   }
 
    window.addEventListener('load', () => {
-     requestAnimationFrame(() => {
-       [
-         { id: 'r1', labelOnLeft: true },
-         { id: 'r2', labelOnLeft: false },
-         { id: 'r3', labelOnLeft: true },
-       ].forEach(({ id, labelOnLeft }) => {
-         const row = document.getElementById(id);
-         const label = row?.querySelector('.r-label');
-         const photo = row?.querySelector('.r-photo');
-         if (row && label && photo) drawConnector(row, label, photo, labelOnLeft);
-       });
-     });
+     requestAnimationFrame(drawAllConnectors);
+   });
+
+   // Redraw on resize so lines never go stale
+   let _resizeTimer;
+   window.addEventListener('resize', () => {
+     clearTimeout(_resizeTimer);
+     _resizeTimer = setTimeout(() => requestAnimationFrame(drawAllConnectors), 100);
    });
  </script>
-
 
  <!-- ── Dropdown interactions ── -->
  <script>
@@ -447,32 +393,25 @@
      const restaurantButtons = document.querySelectorAll('.r-label');
      const countryInfoButtons = document.querySelectorAll('.g-label');
 
-
      restaurantButtons.forEach((button) => {
        button.addEventListener('click', (e) => {
          e.stopPropagation();
 
-
          const parentBox = button.closest('.r-info-box');
          if (!parentBox) return;
-
 
          const dropdown = parentBox.querySelector('.r-dropdown');
          if (!dropdown) return;
 
-
          const isOpen = dropdown.classList.contains('open');
-
 
          document.querySelectorAll('.r-dropdown').forEach((item) => {
            item.classList.remove('open');
          });
 
-
          document.querySelectorAll('.r-label').forEach((item) => {
            item.classList.remove('active');
          });
-
 
          if (!isOpen) {
            dropdown.classList.add('open');
@@ -480,33 +419,26 @@
          }
        });
      });
-
 
      countryInfoButtons.forEach((button) => {
        button.addEventListener('click', (e) => {
          e.stopPropagation();
 
-
          const parentBox = button.closest('.g-info-box');
          if (!parentBox) return;
-
 
          const dropdown = parentBox.querySelector('.g-dropdown');
          if (!dropdown) return;
 
-
          const isOpen = dropdown.classList.contains('open');
-
 
          document.querySelectorAll('.g-dropdown').forEach((item) => {
            item.classList.remove('open');
          });
 
-
          document.querySelectorAll('.g-label').forEach((item) => {
            item.classList.remove('active');
          });
-
 
          if (!isOpen) {
            dropdown.classList.add('open');
@@ -514,23 +446,19 @@
          }
        });
      });
-
 
      document.addEventListener('click', () => {
        document.querySelectorAll('.r-dropdown').forEach((item) => {
          item.classList.remove('open');
        });
 
-
        document.querySelectorAll('.r-label').forEach((item) => {
          item.classList.remove('active');
        });
 
-
        document.querySelectorAll('.g-dropdown').forEach((item) => {
          item.classList.remove('open');
        });
-
 
        document.querySelectorAll('.g-label').forEach((item) => {
          item.classList.remove('active');
@@ -538,7 +466,6 @@
      });
    });
  </script>
-
 
 </body>
 </html>

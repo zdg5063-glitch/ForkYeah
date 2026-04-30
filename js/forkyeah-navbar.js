@@ -125,7 +125,7 @@ export class ForkYeahNavbar extends LitElement {
       font-family: 'Barlow Condensed', sans-serif;
       --red: #ff0019;
       --background: #ffffff;
-      --text: #111;
+      --text: #ff0000;
     }
 
     @media (prefers-color-scheme: dark) {
